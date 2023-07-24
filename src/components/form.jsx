@@ -69,23 +69,25 @@ const Form = () => {
 
   return (
     <div className="bg-dark py-5 mb-12 md:mb-0 lg:py-12 px-[14px] dark:bg-ash">
-      <section className="block justify-center md:pb-16 md:flex items-center">
-        <div className="md:w-1/2 md:pr-20 md:text-left text-center">
-          <h2 className="text-purple font-bold text-xl lg:text-3xl dark:text-deeppurple">
+      <section className="block justify-center md:pb-16 md:flex md:flex-col lg:flex lg:flex-row items-center">
+        <div className="md:w-full lg:pr-20 lg:w-1/2 flex flex-col">
+          <h2 className="lg:text-left text-center text-purple font-bold text-xl md:text-2xl lg:text-3xl  dark:text-deeppurple">
             <span className="text-ash dark:text-dark">
               Start by entering a slang,
             </span>{" "}
             and our dictionary will spit out an abbreviation.{" "}
           </h2>
-          <p className="text-gray text-left lg:text-center text-sm mt-5">
+          <p className="text-gray text-left lg:text-left md:text-center px-0 md:px-10 xmd:px-20 lg:px-0 text-sm mt-5">
             *For now, abbreviations are one-way. For example, Idk can only
             translate to 'I don't know', and not the other way round.
           </p>
         </div>
 
-        <div className="mt-2 md:mt-0">
-          <form className="block md:flex items-center gap-2" id="form">
-            <div className="bg-ash h-11 rounded-full flex items-center p-3 mt-4 md:mt-0 dark:shadow-lg">
+        <div className="mt-2 lg:mt-0 md:mt-4  lg:mb-24">
+          <form
+            className="block md:flex items-center justify-start gap-2"
+            id="form">
+            <div className="bg-ash h-11 rounded-full flex items-center p-3 mt-4 md:mt-0 dark:shadow-lg border-solid border-2 border-deeppurple">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -103,7 +105,7 @@ const Form = () => {
               <input
                 type="text"
                 placeholder="Search slang full meaning..."
-                className="flex-1 w-1/2 h-11 rounded-full ml-2 border-none outline-none placeholder:text-gray bg-ash"
+                className="flex-1 w-[14rem] h-6 ml-2 border-none outline-none placeholder:text-gray bg-ash"
                 value={userInput}
                 onChange={(e) =>
                   setUserInput(e.target.value.toLocaleLowerCase())
@@ -114,12 +116,10 @@ const Form = () => {
             <button
               onClick={fetchData}
               disabled={isLoading || !hasUserInputChanged}
-              className="bg-deeppurple text-ash font-bold rounded-xl hover:scale-110 p-2 mt-4 md:mt-0 w-full md:w-auto">
-              Search
+              className="bg-deeppurple text-ash font-bold rounded-xl hover:scale-110 p-2 mt-4 md:mt-0 items-center flex justify-center h-[50px] min-w-[100px] w-full md:w-auto">
+              {isLoading ? <LoadingSpinner /> : "Search"}
             </button>
           </form>
-
-          {isLoading && <LoadingSpinner />}
 
           {data && (
             <div className="bg-ash shadow-lg border-2 border-deeppurple py-2 pl-2 rounded-lg mt-4">
@@ -149,7 +149,7 @@ const Form = () => {
           )}
 
           {errorMessage && (
-            <div className="mt-4 p-3">
+            <div className="mt-4 p-3 lg:absolute">
               <p className="text-purple dark:text-deeppurple">
                 This entry does not exist in our records as of yet :(
               </p>
@@ -161,7 +161,7 @@ const Form = () => {
                   github issue
                 </a>
               </p>
-              <p className="text-ash dark:text-dark">
+              <p className="text-ash dark:text-dark w-3/4">
                 2. Or, you could fill out this{" "}
                 <a
                   href="https://t.co/mp86BLYBhq"
